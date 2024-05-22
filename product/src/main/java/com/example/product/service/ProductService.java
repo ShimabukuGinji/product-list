@@ -1,5 +1,6 @@
 package com.example.product.service;
 
+import com.example.product.entity.InsertProduct;
 import com.example.product.entity.Product;
 import com.example.product.repository.IProductRepository;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,11 @@ public class ProductService implements IProductService {
     @Override
     public Product findById(int id) {
         return productRepository.findById(id);
+    }
+
+    @Override
+    public int insert(InsertProduct product){
+        return productRepository.insert(product);
     }
 
 }

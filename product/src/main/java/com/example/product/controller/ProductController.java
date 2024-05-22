@@ -1,9 +1,13 @@
 package com.example.product.controller;
 
+import com.example.product.entity.InsertProduct;
+import com.example.product.form.AddForm;
 import com.example.product.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -27,5 +31,22 @@ public class ProductController {
             model.addAttribute("product", productService.findById(id));
             return "product";
         }
+    }
+
+    @GetMapping("product-add")
+    public String index(@ModelAttribute("loginForm") AddForm addForm) {
+        return "product-add";
+    }
+
+    @PostMapping("product-add")
+    public String productAdd(@Validated @ModelAttribute("addForm") AddForm addForm, BindingResult bindingResult){
+        //バリデーション
+        if(bindingResult.hasErrors()) {
+            return "product-add";
+        }
+        if(productService.insert(new InsertProduct(addForm.getAddName(),addForm.getAddPrice())) == 1) {
+            return "product-list";
+        }
+        return "product-add";
     }
 }
