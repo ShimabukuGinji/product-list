@@ -3,16 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <title>商品追加</title>
+  <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-<form action="/add" method="post" th:object="${addForm}">
-  <h1>商品一覧</h1>
-  <p>商品名 : <input type="text" th:field="*{addName}"></p>
-  <div class="error" th:each="error: ${#fields.errors('addName')}">
+<form action="/product-add" method="post" th:object="${ProductForm}">
+  <h1>商品追加</h1>
+  <p>商品名 : <input type="text" th:field="*{name}"></p>
+  <div class="error" th:each="error: ${#fields.errors('name')}">
     [[ ${error} ]]
   </div>
-  <p>値段 : <input type="text" th:field="*{addPrice}"></p>
-  <div class="error" th:each="error: ${#fields.errors('addPrice')}">
+  <p>値段 : <input type="text" th:field="*{price}"></p>
+  <div class="error" th:each="error: ${#fields.errors('price')}">
     [[ ${error} ]]
   </div>
   <p><button type="submit">追加</button></p>

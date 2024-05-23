@@ -38,4 +38,20 @@ public class ProductRepository implements IProductRepository{
         param.addValue("price", product.price());
         return jdbcTemplate.update("INSERT INTO products (name, price) VALUES(:name, :price)", param);
     }
+
+    @Override
+    public int update(Product product) {
+        var param = new MapSqlParameterSource();
+        param.addValue("id", product.id());
+        param.addValue("name", product.name());
+        param.addValue("price", product.price());
+        return jdbcTemplate.update("UPDATE products SET name = :name, price = :price WHERE id = :id", param);
+    }
+
+    @Override
+    public int delete(int id) {
+        var param = new MapSqlParameterSource();
+        param.addValue("id", id);
+        return jdbcTemplate.update("DELETE FROM products WHERE id = :id",param);
+    }
 }

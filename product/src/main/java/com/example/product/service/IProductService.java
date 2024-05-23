@@ -13,4 +13,8 @@ public interface IProductService {
     Product findById(int id);
 
     int insert(InsertProduct product);
+
+    int update(Product product);
+
+    int delete(int id);
 }

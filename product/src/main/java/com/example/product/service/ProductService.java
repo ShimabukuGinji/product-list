@@ -29,4 +29,13 @@ public class ProductService implements IProductService {
         return productRepository.insert(product);
     }
 
+    @Override
+    public int update(Product product) {
+        return productRepository.update(product);
+    }
+
+    @Override
+    public int delete(int id) {
+        return productRepository.delete(id);
+    }
 }
